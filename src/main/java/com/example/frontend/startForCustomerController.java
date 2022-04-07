@@ -2,10 +2,15 @@ package com.example.frontend;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class startForCustomerController {
 
@@ -53,7 +58,6 @@ public class startForCustomerController {
         private Rectangle seatTwelve;
         @FXML
         private Rectangle seatTwo;
-
 
 
         @FXML

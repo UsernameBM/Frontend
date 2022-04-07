@@ -23,12 +23,34 @@
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <ImageView fx:id="movieImageView1" fitHeight="67.0" fitWidth="48.0" layoutX="144.0" layoutY="261.0" pickOnBounds="true" preserveRatio="true" />
-                        <TableView layoutX="91.0" layoutY="26.0" prefHeight="317.0" prefWidth="488.0">
+                        <TableView layoutX="338.0" layoutY="26.0" prefHeight="317.0" prefWidth="228.0">
                           <columns>
-                            <TableColumn prefWidth="75.0" text="C1" />
-                            <TableColumn prefWidth="75.0" text="C2" />
+                            <TableColumn prefWidth="75.0" text="Film" />
+                            <TableColumn prefWidth="75.0" text="Salong" />
+                              <TableColumn prefWidth="75.0" text="Tid" />
                           </columns>
                         </TableView>
+                        <ChoiceBox layoutX="157.0" layoutY="50.0" prefWidth="150.0" />
+                        <ChoiceBox layoutX="157.0" layoutY="110.0" prefWidth="150.0" />
+                        <ChoiceBox layoutX="157.0" layoutY="170.0" prefWidth="150.0" />
+                        <Label layoutX="31.0" layoutY="55.0" prefHeight="18.0" prefWidth="122.0" text="Välj film">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="31.0" layoutY="113.0" prefHeight="18.0" prefWidth="125.0" text="Välj salong">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="33.0" layoutY="176.0" prefHeight="18.0" prefWidth="122.0" text="Välj tid">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="28.0" layoutY="222.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="278.0" text="Lägg till filmvisning" />
+                        <Button layoutX="266.0" layoutY="282.0" mnemonicParsing="false" text="Redigera " />
+                        <Button layoutX="266.0" layoutY="315.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="68.0" text="Radera" />
                      </children>
                   </AnchorPane>
                </content>
@@ -68,9 +90,9 @@
                         <Button fx:id="openImageButton" layoutX="232.0" layoutY="241.0" mnemonicParsing="false" onAction="#openImageFileOnAction" prefHeight="26.0" prefWidth="100.0" text="Hämta fil" />
                         <ListView fx:id="movieListView" layoutX="358.0" layoutY="61.0" prefHeight="219.0" prefWidth="200.0" />
                         <ImageView fx:id="movieImageView" fitHeight="67.0" fitWidth="48.0" layoutX="144.0" layoutY="261.0" pickOnBounds="true" preserveRatio="true" />
-                        <Button fx:id="addMovieButton" layoutX="37.0" layoutY="300.0" mnemonicParsing="false" onAction="#addMovieOnAction" prefHeight="26.0" prefWidth="295.0" text="Förhandsgranska" />
+                        <Button fx:id="uploadMovieButton" layoutX="37.0" layoutY="300.0" mnemonicParsing="false" onAction="#uploadMovieOnAction" prefHeight="26.0" prefWidth="295.0" text="Förhandsgranska" />
                         <Button fx:id="removeMovieButton" layoutX="358.0" layoutY="301.0" mnemonicParsing="false" onAction="#removeMovieOnAction" prefHeight="26.0" prefWidth="93.0" text="Radera " />
-                        <Button fx:id="removeMovieButton1" layoutX="458.0" layoutY="301.0" mnemonicParsing="false" onAction="#removeMovieOnAction" prefHeight="26.0" prefWidth="103.0" text="Ladda upp " />
+                        <Button fx:id="addMovieButton" layoutX="458.0" layoutY="301.0" mnemonicParsing="false" onAction="#addMovieOnAction" prefHeight="26.0" prefWidth="103.0" text="Ladda upp " />
                      </children>
                   </AnchorPane>
             </content>
@@ -200,6 +222,15 @@
                            </font>
                         </Label>
                         <Button layoutX="25.0" layoutY="275.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="128.0" text="Uppdatera uppgifter" />
+                        <Label layoutX="138.0" layoutY="134.0" text="Email" textFill="#f22020" />
+                        <Label layoutX="138.0" layoutY="169.0" text="Telefonnummer" textFill="#f22020" />
+                        <Label layoutX="138.0" layoutY="99.0" text="Efternamn" textFill="#f22020" />
+                        <Label layoutX="138.0" layoutY="64.0" text="Förnamn" textFill="#f22020" />
+                        <Label layoutX="138.0" layoutY="204.0" text="Bank" textFill="#f22020" />
+                        <Label layoutX="138.0" layoutY="239.0" text="Banknummer" textFill="#f22020" />
+                        <Label layoutX="369.0" layoutY="64.0" text="Användarnamn" textFill="#f22020" />
+                        <Label layoutX="369.0" layoutY="99.0" text="Lösenord" textFill="#f22020" />
+                        <Button layoutX="493.0" layoutY="316.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="83.0" text="Logga ut" />
                      </children>
                   </AnchorPane>
                </content>

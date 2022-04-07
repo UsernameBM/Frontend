@@ -20,6 +20,8 @@ import java.sql.Statement;
 public class LoginController {
 
     private Parent root;
+    private Stage stage;
+    private Scene scene;
 
     @FXML
     private Button cLogInButton;
@@ -39,26 +41,37 @@ public class LoginController {
     private PasswordField ePasswordField;
 
 
-    public void cLogInButtonOnAction(ActionEvent event) {
+    @FXML
+    void cLogInButtonOnAction(ActionEvent event) throws IOException {
         if (!customerUsernameField.getText().isBlank() && !customerPasswordField.getText().isBlank()) {
-            customerValidateLogin();
+            root = FXMLLoader.load(getClass().getResource("startForCustomer.fxml"));
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
         } else {
             cLoginMessageLabel.setText("Skriv in ditt användarnamn och lösenord!");
         }
     }
 
-    public void eLoginButtonOnAction(ActionEvent event) {
+    @FXML
+    void eLoginButtonOnAction(ActionEvent event) throws IOException {
         if (!eUsernameField.getText().isBlank() && !ePasswordField.getText().isBlank()) {
-            customerValidateLogin();
+            root = FXMLLoader.load(getClass().getResource("startPageForPersonal.fxml"));
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
         } else {
             eLoginMessageLabel.setText("Skriv in ditt användarnamn och lösenord!");
         }
     }
 
-    public void cSignInButtonOnAction(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/CRegister.fxml"));
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
+    @FXML
+    void cSignInButtonOnAction(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("Register.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }

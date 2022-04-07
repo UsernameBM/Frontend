@@ -2,6 +2,8 @@ package com.example.frontend;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -9,10 +11,18 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+
 import java.io.File;
+import java.io.IOException;
+
+/**
+ * VAD VI BEHÖVER GÖRA
+ */
 
 
-    public class StartPageForPersonal {
+public class StartPageForPersonal {
+        ConnectionManager connectionManager = new ConnectionManager();
 
         @FXML
         private Button addMovieButton;
@@ -45,6 +55,7 @@ import java.io.File;
 
         final FileChooser fileChooser = new FileChooser();
 
+
     @FXML
     private void openImageFileOnAction(ActionEvent event) {
         // Set title of
@@ -70,20 +81,29 @@ import java.io.File;
     }
 
 
-    @FXML
-    void addMovieOnAction(ActionEvent event) {
-        String movieInformation = getMovieTitleTextField.getText() + ", " + getMovieDescriptionTextField.getText() +
-                ", " + getMovieLengthTextField.getText();
+        @FXML
+        void uploadMovieOnAction(ActionEvent event) {
+        String getMovieTitle = getMovieTitleTextField.getText();
+        String getMovieDescription = getMovieDescriptionTextField.getText();
+        String getMovieLength = getMovieLengthTextField.getText();
+
+        String movieInformation = getMovieTitle + ", " + getMovieDescription + ", " + getMovieLength;
 
         movieListView.getItems().add(movieInformation);
-
     }
 
-    @FXML
-    void removeMovieOnAction(ActionEvent event) {
-        int selectedMovie = movieListView.getSelectionModel().getSelectedIndex();
-        movieListView.getItems().remove(selectedMovie);
-    }
+        @FXML
+        void removeMovieOnAction(ActionEvent event) {
+            int selectedMovie = movieListView.getSelectionModel().getSelectedIndex();
+            movieListView.getItems().remove(selectedMovie);
+        }
+
+        @FXML
+        void addMovieOnAction(ActionEvent event) {
+
+        }
+
+
 
 
 }
