@@ -3,11 +3,9 @@ package com.example.frontend;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
@@ -15,14 +13,32 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * VAD VI BEHÖVER GÖRA
  */
 
 
-public class StartPageForPersonal {
+public class StartPageForPersonal implements Initializable {
         ConnectionManager connectionManager = new ConnectionManager();
+
+        @FXML
+        private ChoiceBox<String> tid;
+        private String[] tider = {"2020-04-08 09:00-15:00","2020-04-08 15:00-23:00","2020-04-09 09:00-15:00","2020-04-09 15:00-23:00"};
+        @FXML
+        private ChoiceBox<String> id;
+        private String[] personal = {"Henning", "Bryan", "Johanna", "Killian", "Isabella"};
+        @FXML
+        private ChoiceBox<String> salon;
+        private String[] auditorium = {"1","2","3","4","5"};
+        @FXML
+        private ChoiceBox<String> kök;
+        private String[] yesKök = {"Ja", "Nej"};
+        @FXML
+        private ChoiceBox<String> kassa;
+        private String[] yesKassa = {"Ja", "Nej"};
 
         @FXML
         private Button addMovieButton;
@@ -104,6 +120,13 @@ public class StartPageForPersonal {
         }
 
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        tid.getItems().addAll(tider);
+        id.getItems().addAll(personal);
+        salon.getItems().addAll(auditorium);
+        kök.getItems().addAll(yesKök);
+        kassa.getItems().addAll(yesKassa);
 
-
+    }
 }
