@@ -34,11 +34,13 @@ public class StartPageForPersonal implements Initializable {
         private ChoiceBox<String> salon;
         private String[] auditorium = {"1","2","3","4","5"};
         @FXML
-        private ChoiceBox<String> kök;
-        private String[] yesKök = {"Ja", "Nej"};
+        private ChoiceBox<String> kitchen;
+        private String[] yesKitchen = {"Ja", "Nej"};
         @FXML
-        private ChoiceBox<String> kassa;
-        private String[] yesKassa = {"Ja", "Nej"};
+        private ChoiceBox<String> counter;
+        private String[] yesCounter = {"Ja", "Nej"};
+        @FXML
+        private Button AddChoises;
 
         @FXML
         private Button addMovieButton;
@@ -120,13 +122,14 @@ public class StartPageForPersonal implements Initializable {
         }
 
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         tid.getItems().addAll(tider);
         id.getItems().addAll(personal);
         salon.getItems().addAll(auditorium);
-        kök.getItems().addAll(yesKök);
-        kassa.getItems().addAll(yesKassa);
+        kitchen.getItems().addAll(yesKitchen);
+        counter.getItems().addAll(yesCounter);
 
     }
 }
