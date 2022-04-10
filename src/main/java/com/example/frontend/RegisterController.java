@@ -51,7 +51,7 @@ public class RegisterController {
         String password = cSetPasswordField.getText();
 
 
-
+        //Funkar
         if (connectionManager.sendRequst("/verifyCustomerUsername?username=" + username).equals("Customer exist")){
             cConfirmRegistrationLabel.setText("Användarnamn upptagen, välj ett annat!");
 
