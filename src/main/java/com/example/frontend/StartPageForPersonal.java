@@ -4,10 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
@@ -52,6 +49,16 @@ public class StartPageForPersonal {
         private Button removeMovieButton;
         @FXML
         private Button removeMovieButton1;
+
+
+        @FXML
+        private Label pConfirmPasswordLabel;
+        @FXML
+        private Label pConfirmRegistrationLabel;
+        @FXML
+        private PasswordField setPasswordField;
+        @FXML
+        private PasswordField confirmPasswordField;
 
         final FileChooser fileChooser = new FileChooser();
 
@@ -102,6 +109,17 @@ public class StartPageForPersonal {
         void addMovieOnAction(ActionEvent event) {
 
         }
+
+        @FXML
+        public void pConfirmRegistrationOnAction(ActionEvent event) {
+        if (setPasswordField.getText().equals(confirmPasswordField.getText() )) {
+            // in med registrera användare
+        } else {
+            pConfirmPasswordLabel.setText("Lösenorden stämmer inte överens!");
+        }
+    }
+
+
 
 
 

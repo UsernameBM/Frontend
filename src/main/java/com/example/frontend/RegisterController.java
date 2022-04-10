@@ -61,16 +61,13 @@ public class RegisterController {
         }
         /*
 
-        try {
-            ConnectionManager connectionManager = new ConnectionManager();
-            connectionManager.sendRequst("/verifyCustomerUsername" + username);
+        String usernameRequest = connectionManager.sendRequst("/verifyCustomerUsername" + username);
+
+        if(!usernameRequest.equals(null)) {
             cConfirmRegistrationLabel.setText("Användarnamn upptagen, välj ett annat!");
-        } catch(Exception e) {
+        } else {
         connectionManager.sendRequst("/addCustomer" + firstname + lastname + username + password);
         cConfirmRegistrationLabel.setText("Användare har registrerats. Gå tillbaka för att logga in!");
-            e.printStackTrace();
-            e.getCause();
-
         }
 
          */
