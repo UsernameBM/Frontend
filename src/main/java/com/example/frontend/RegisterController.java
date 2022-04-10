@@ -50,11 +50,21 @@ public class RegisterController {
         String username = cUsernameTextField.getText();
         String password = cSetPasswordField.getText();
 
+
+
+        if (connectionManager.sendRequst("/verifyCustomerUsername?username=" + username).equals("Customer exist")){
+            cConfirmRegistrationLabel.setText("Användarnamn upptagen, välj ett annat!");
+
+        } else {
+            connectionManager.sendRequst("/insertCustomer?firstname=" + firstname + "&lastname="+ lastname +"&username="+ username +"&password=" + password);
+            cConfirmRegistrationLabel.setText("Användare har registrerats. Gå tillbaka för att logga in!");
+        }
+        /*
+
         try {
             ConnectionManager connectionManager = new ConnectionManager();
             connectionManager.sendRequst("/verifyCustomerUsername" + username);
             cConfirmRegistrationLabel.setText("Användarnamn upptagen, välj ett annat!");
-
         } catch(Exception e) {
         connectionManager.sendRequst("/addCustomer" + firstname + lastname + username + password);
         cConfirmRegistrationLabel.setText("Användare har registrerats. Gå tillbaka för att logga in!");
@@ -62,6 +72,8 @@ public class RegisterController {
             e.getCause();
 
         }
+
+         */
     }
 
     @FXML
