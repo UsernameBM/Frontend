@@ -4,10 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
@@ -52,6 +49,27 @@ public class StartPageForPersonal {
         private Button removeMovieButton;
         @FXML
         private Button removeMovieButton1;
+
+        @FXML
+        private ChoiceBox <String> CBBiograf;
+        @FXML
+        private TextField TFFirstName;
+        @FXML
+        private TextField TFLastName;
+        @FXML
+        private TextField TFTele_number;
+        @FXML
+        private TextField TFEmail;
+        @FXML
+        private TextField TFBank;
+        @FXML
+        private TextField TFBanknumber;
+        @FXML
+        private TextField TFUsername;
+        @FXML
+        private TextField TFPassword;
+        @FXML
+        private TextField TFRePassword;
 
         final FileChooser fileChooser = new FileChooser();
 
@@ -103,7 +121,30 @@ public class StartPageForPersonal {
 
         }
 
+    public void TFRePassword(ActionEvent event) {
+        if (TFPassword.getText().equals(TFRePassword.getText()  )){
+            registerPersonal();
+        } else {
+            //cConfirmPasswordLabel.setText("Lösenorden stämmer inte överens!");
+        }
+    }
 
+    public void registerPersonal(){
+        String firstName = TFFirstName.getText();
+        String lastName = TFLastName.getText();
+        String telephone_number = TFTele_number.getText();
+        String email = TFEmail.getText();
+        String bank = TFBank.getText();
+        String banknumber = TFBanknumber.getText();
+        String userName = TFUsername.getText();
+        String password = TFPassword.getText();
 
+        if (connectionManager.sendRequst("/verifyPersonalUsername?username=" + userName).equals("Personal exist")){
+            //cConfirmRegistrationLabel.setText("Användarnamn upptagen, välj ett annat!");
+        } else {
+            connectionManager.sendRequst("/insertPersonal?firstname=" + firstName + "&lastname=" + lastName + "&tel_number=" + telephone_number + "&email=" + email + "&bank=" + bank + "&banknumber=" + banknumber + "&user_name=" + userName + "&password=" + password);
+           //cConfirmRegistrationLabel.setText("Användare har registrerats. Gå tillbaka för att logga in!");
+        }
+    }
 
 }
