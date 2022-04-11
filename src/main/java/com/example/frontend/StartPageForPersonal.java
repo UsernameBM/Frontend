@@ -74,6 +74,7 @@ public class StartPageForPersonal {
         final FileChooser fileChooser = new FileChooser();
 
 
+
     @FXML
     private void openImageFileOnAction(ActionEvent event) {
         // Set title of
@@ -118,7 +119,7 @@ public class StartPageForPersonal {
 
         @FXML
         void addMovieOnAction(ActionEvent event) {
-
+            addMovie();
         }
 
     public void TFRePassword(ActionEvent event) {
@@ -147,4 +148,11 @@ public class StartPageForPersonal {
         }
     }
 
+    public void addMovie(){
+        String title = getMovieTitleTextField.getText();
+        String description = getMovieDescriptionTextField.getText();
+        String length = getMovieLengthTextField.getText();
+
+        connectionManager.sendRequst("/insertMovie?name=" + title + "&description=" + description + "&length=" + length);
+    }
 }
