@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -26,19 +27,21 @@ public class StartPageForPersonal implements Initializable {
 
         @FXML
         private ChoiceBox<String> tid;
-        private String[] tider = {"2020-04-08 09:00-15:00","2020-04-08 15:00-23:00","2020-04-09 09:00-15:00","2020-04-09 15:00-23:00"};
+        private String[] tider = {"2020-04-08,09:00-15:00","2020-04-08,15:00-23:00","2020-04-09,09:00-15:00","2020-04-09,15:00-23:00"};
         @FXML
-        private ChoiceBox<String> id;
-        private String[] personal = {"Henning", "Bryan", "Johanna", "Killian", "Isabella"};
+        private ChoiceBox<Integer> id;
+        private int[] personal = {1, 2, 3, 4, 5};
         @FXML
-        private ChoiceBox<String> salon;
-        private String[] auditorium = {"1","2","3","4","5"};
+        private ChoiceBox<Integer> salon;
+        private int[] auditorium = {1,2,3,4,5};
         @FXML
         private ChoiceBox<String> kitchen;
         private String[] yesKitchen = {"Ja", "Nej"};
         @FXML
         private ChoiceBox<String> counter;
         private String[] yesCounter = {"Ja", "Nej"};
+        @FXML
+        private Label fillInAllLabel;
         @FXML
         private Button AddChoises;
 
@@ -126,10 +129,48 @@ public class StartPageForPersonal implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         tid.getItems().addAll(tider);
-        id.getItems().addAll(personal);
-        salon.getItems().addAll(auditorium);
+        id.getItems().addAll(1,2,3,4,5);
+        salon.getItems().addAll(1,2,3,4,5);
         kitchen.getItems().addAll(yesKitchen);
         counter.getItems().addAll(yesCounter);
+
+    }
+
+    public void cSendToSchedualButton(ActionEvent event) {
+       try{
+        if (!tid.getValue().isBlank() && !kitchen.getValue().isBlank() && !counter.getValue().isBlank() && !id.getValue().toString().isBlank() && !salon.getValue().toString().isBlank() ) {
+            fillInAllLabel.setTextFill(Color.GREEN);
+            fillInAllLabel.setText("Du har bokat pass!");
+            sendToSchedual();
+        }
+        } catch (Exception e){
+           fillInAllLabel.setTextFill(Color.RED);
+           fillInAllLabel.setText("du måste fylla i");
+           e.printStackTrace();
+
+       }
+
+    }
+
+    private void sendToSchedual() {
+
+        String hej = tid.getValue();
+        System.out.println(hej);
+        String time = tid.getValue();
+        int idd = id.getValue();
+        int salond = salon.getValue();
+        String kit = kitchen.getValue();
+        //String[] kitchend = kitchen.;
+        String kassa = counter.getValue();
+       // if (connectionManager.sendRequst("/verifyCustomerUsername?username=" + time + idd).equals("Customer exist")){
+           // fillInAllLabel.setText("Användarnamn upptagen, välj ett annat!");
+          //  fillInAllLabel.setTextFill(Color.RED);
+
+        //  } else {
+        System.out.println(("/insertPersonalSchedule?idSalon=" + salond + "&idUser="+ idd +"&Counter="+ kassa +"&Kitchen=" + kit + "&date=" + time));
+            connectionManager.sendRequst("/insertPersonalSchedule?idSalon=" + salond + "&idUser="+ idd +"&Counter="+ kassa +"&Kitchen=" + kit + "&date=" + time);
+            fillInAllLabel.setText("finns i systemet!");
+      //  }
 
     }
 }

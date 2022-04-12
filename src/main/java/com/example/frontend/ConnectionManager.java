@@ -18,12 +18,16 @@ public class ConnectionManager {
             URL url = new URL("http://localhost:8080" + request);
             connection = (HttpURLConnection) url.openConnection();
 
+
+
             connection.setRequestMethod("GET");
             connection.setConnectTimeout(5000);
             connection.setReadTimeout(5000);
 
+
+
             int status = connection.getResponseCode();
-            System.out.println("Status: " + status + " Hello");
+            //System.out.println("Status: " + status);
 
             if (status < 300){
                 BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
@@ -31,6 +35,7 @@ public class ConnectionManager {
                     responseString += line;
                 }
                 reader.close();
+                System.out.println();
 
             }
 

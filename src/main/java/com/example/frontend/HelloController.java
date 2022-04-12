@@ -7,6 +7,7 @@ import org.controlsfx.control.action.Action;
 
 public class HelloController {
 
+    ConnectionManager connectionManager;
 
 
     @FXML
@@ -15,8 +16,9 @@ public class HelloController {
     @FXML
     protected void onHelloButtonClick(ActionEvent event) {
 
-        ConnectionManager connectionManager = new ConnectionManager();
-        connectionManager.sendRequst("/hello");
+        connectionManager = new ConnectionManager();
+        System.out.println(connectionManager.sendRequest("/requestScreening?id=1"));
+
 
 
     }

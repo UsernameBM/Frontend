@@ -23,6 +23,8 @@ public class LoginController {
     private Stage stage;
     private Scene scene;
 
+    ConnectionManager connectionManager;
+
     @FXML
     private Button cLogInButton;
     @FXML
@@ -43,16 +45,40 @@ public class LoginController {
 
     @FXML
     void cLogInButtonOnAction(ActionEvent event) throws IOException {
-        if (!customerUsernameField.getText().isBlank() && !customerPasswordField.getText().isBlank()) {
-            root = FXMLLoader.load(getClass().getResource("startForCustomer.fxml"));
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } else {
-            cLoginMessageLabel.setText("Skriv in ditt användarnamn och lösenord!");
-        }
+
+
+         connectionManager = new ConnectionManager();
+
+        String resultString = connectionManager
+                .sendRequst("/authorize?username="+customerUsernameField.getText()+"&password="+customerPasswordField.getText());
+
+
+         if (customerUsernameField.getText().isBlank() || customerPasswordField.getText().isBlank()){
+            cLoginMessageLabel.setText("Skriv in ditt användarnamn och lösenord!");}
+
+
+        else if(resultString.equals("right password")) {
+
+                root = FXMLLoader.load(getClass().getResource("startForCustomer.fxml"));
+                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();}
+
+
+        else if(resultString.equals("wrong password or username")){
+            cLoginMessageLabel.setText("wrong password or username");}
+
+        else {
+             cLoginMessageLabel.setText("wrong password or username");
+         }
+
     }
+
+
+
+
+
 
     @FXML
     void eLoginButtonOnAction(ActionEvent event) throws IOException {
