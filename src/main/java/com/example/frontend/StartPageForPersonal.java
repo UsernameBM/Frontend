@@ -21,6 +21,31 @@ import java.io.IOException;
 public class StartPageForPersonal {
         ConnectionManager connectionManager = new ConnectionManager();
 
+    /**
+     * henning
+
+    @FXML
+    private ChoiceBox<String> tid;
+    private String[] tider = {"2020-04-08,09:00-15:00","2020-04-08,15:00-23:00","2020-04-09,09:00-15:00","2020-04-09,15:00-23:00"};
+    @FXML
+    private ChoiceBox<Integer> id;
+    private int[] personal = {1, 2, 3, 4, 5};
+    @FXML
+    private ChoiceBox<Integer> salon;
+    private int[] auditorium = {1,2,3,4,5};
+    @FXML
+    private ChoiceBox<String> kitchen;
+    private String[] yesKitchen = {"Ja", "Nej"};
+    @FXML
+    private ChoiceBox<String> counter;
+    private String[] yesCounter = {"Ja", "Nej"};
+    @FXML
+    private Label fillInAllLabel;
+    @FXML
+    private Button AddChoises;
+     */
+
+
         @FXML
         private Button addMovieButton;
         @FXML
