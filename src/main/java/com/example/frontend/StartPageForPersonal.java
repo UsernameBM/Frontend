@@ -25,25 +25,30 @@ import java.util.ResourceBundle;
 public class StartPageForPersonal implements Initializable {
         ConnectionManager connectionManager = new ConnectionManager();
 
-        @FXML
-        private ChoiceBox<String> tid;
-        private String[] tider = {"2020-04-08,09:00-15:00","2020-04-08,15:00-23:00","2020-04-09,09:00-15:00","2020-04-09,15:00-23:00"};
-        @FXML
-        private ChoiceBox<Integer> id;
-        private int[] personal = {1, 2, 3, 4, 5};
-        @FXML
-        private ChoiceBox<Integer> salon;
-        private int[] auditorium = {1,2,3,4,5};
-        @FXML
-        private ChoiceBox<String> kitchen;
-        private String[] yesKitchen = {"Ja", "Nej"};
-        @FXML
-        private ChoiceBox<String> counter;
-        private String[] yesCounter = {"Ja", "Nej"};
-        @FXML
-        private Label fillInAllLabel;
-        @FXML
-        private Button AddChoises;
+
+
+
+    @FXML
+    private ChoiceBox<String> tid;
+    private String[] tider = {"2020-04-08,09:00-15:00","2020-04-08,15:00-23:00","2020-04-09,09:00-15:00","2020-04-09,15:00-23:00"};
+    @FXML
+    private ChoiceBox<Integer> id;
+    private int[] personal = {1, 2, 3, 4, 5};
+    @FXML
+    private ChoiceBox<Integer> salon;
+    private int[] auditorium = {1,2,3,4,5};
+    @FXML
+    private ChoiceBox<String> kitchen;
+    private String[] yesKitchen = {"Ja", "Nej"};
+    @FXML
+    private ChoiceBox<String> counter;
+    private String[] yesCounter = {"Ja", "Nej"};
+    @FXML
+    private Label fillInAllLabel;
+    @FXML
+    private Button AddChoises;
+
+
 
         @FXML
         private Button addMovieButton;
@@ -74,7 +79,29 @@ public class StartPageForPersonal implements Initializable {
         @FXML
         private Button removeMovieButton1;
 
+        @FXML
+        private ChoiceBox <String> CBBiograf;
+        @FXML
+        private TextField TFFirstName;
+        @FXML
+        private TextField TFLastName;
+        @FXML
+        private TextField TFTele_number;
+        @FXML
+        private TextField TFEmail;
+        @FXML
+        private TextField TFBank;
+        @FXML
+        private TextField TFBanknumber;
+        @FXML
+        private TextField TFUsername;
+        @FXML
+        private TextField TFPassword;
+        @FXML
+        private TextField TFRePassword;
+
         final FileChooser fileChooser = new FileChooser();
+
 
 
     @FXML
@@ -121,11 +148,42 @@ public class StartPageForPersonal implements Initializable {
 
         @FXML
         void addMovieOnAction(ActionEvent event) {
-
+            addMovie();
         }
 
+    public void TFRePassword(ActionEvent event) {
+        if (TFPassword.getText().equals(TFRePassword.getText()  )){
+            registerPersonal();
+        } else {
+            //cConfirmPasswordLabel.setText("Lösenorden stämmer inte överens!");
+        }
+    }
 
+    public void registerPersonal(){
+        String firstName = TFFirstName.getText();
+        String lastName = TFLastName.getText();
+        String telephone_number = TFTele_number.getText();
+        String email = TFEmail.getText();
+        String bank = TFBank.getText();
+        String banknumber = TFBanknumber.getText();
+        String userName = TFUsername.getText();
+        String password = TFPassword.getText();
 
+        if (connectionManager.sendRequst("/verifyPersonalUsername?username=" + userName).equals("Personal exist")){
+            //cConfirmRegistrationLabel.setText("Användarnamn upptagen, välj ett annat!");
+        } else {
+            connectionManager.sendRequst("/insertPersonal?firstname=" + firstName + "&lastname=" + lastName + "&tel_number=" + telephone_number + "&email=" + email + "&bank=" + bank + "&banknumber=" + banknumber + "&user_name=" + userName + "&password=" + password);
+           //cConfirmRegistrationLabel.setText("Användare har registrerats. Gå tillbaka för att logga in!");
+        }
+    }
+
+    public void addMovie(){
+        String title = getMovieTitleTextField.getText();
+        String description = getMovieDescriptionTextField.getText();
+        String length = getMovieLengthTextField.getText();
+
+        connectionManager.sendRequst("/insertMovie?name=" + title + "&description=" + description + "&length=" + length);
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         tid.getItems().addAll(tider);
@@ -137,18 +195,18 @@ public class StartPageForPersonal implements Initializable {
     }
 
     public void cSendToSchedualButton(ActionEvent event) {
-       try{
-        if (!tid.getValue().isBlank() && !kitchen.getValue().isBlank() && !counter.getValue().isBlank() && !id.getValue().toString().isBlank() && !salon.getValue().toString().isBlank() ) {
-            fillInAllLabel.setTextFill(Color.GREEN);
-            fillInAllLabel.setText("Du har bokat pass!");
-            sendToSchedual();
-        }
+        try{
+            if (!tid.getValue().isBlank() && !kitchen.getValue().isBlank() && !counter.getValue().isBlank() && !id.getValue().toString().isBlank() && !salon.getValue().toString().isBlank() ) {
+                fillInAllLabel.setTextFill(Color.GREEN);
+                fillInAllLabel.setText("Du har bokat pass!");
+                sendToSchedual();
+            }
         } catch (Exception e){
-           fillInAllLabel.setTextFill(Color.RED);
-           fillInAllLabel.setText("du måste fylla i");
-           e.printStackTrace();
+            fillInAllLabel.setTextFill(Color.RED);
+            fillInAllLabel.setText("du måste fylla i");
+            e.printStackTrace();
 
-       }
+        }
 
     }
 
@@ -162,15 +220,15 @@ public class StartPageForPersonal implements Initializable {
         String kit = kitchen.getValue();
         //String[] kitchend = kitchen.;
         String kassa = counter.getValue();
-       // if (connectionManager.sendRequst("/verifyCustomerUsername?username=" + time + idd).equals("Customer exist")){
-           // fillInAllLabel.setText("Användarnamn upptagen, välj ett annat!");
-          //  fillInAllLabel.setTextFill(Color.RED);
+        // if (connectionManager.sendRequst("/verifyCustomerUsername?username=" + time + idd).equals("Customer exist")){
+        // fillInAllLabel.setText("Användarnamn upptagen, välj ett annat!");
+        //  fillInAllLabel.setTextFill(Color.RED);
 
         //  } else {
         System.out.println(("/insertPersonalSchedule?idSalon=" + salond + "&idUser="+ idd +"&Counter="+ kassa +"&Kitchen=" + kit + "&date=" + time));
-            connectionManager.sendRequst("/insertPersonalSchedule?idSalon=" + salond + "&idUser="+ idd +"&Counter="+ kassa +"&Kitchen=" + kit + "&date=" + time);
-            fillInAllLabel.setText("finns i systemet!");
-      //  }
+        connectionManager.sendRequst("/insertPersonalSchedule?idSalon=" + salond + "&idUser="+ idd +"&Counter="+ kassa +"&Kitchen=" + kit + "&date=" + time);
+        fillInAllLabel.setText("finns i systemet!");
+        //  }
 
     }
 }
