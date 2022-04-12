@@ -20,37 +20,37 @@
         <tabs>
             <Tab text="Filmvisningar">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <AnchorPane fx:id="APFilmvisningar" minHeight="0.0" minWidth="0.0" onMouseClicked="#showScreening" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <ImageView fx:id="movieImageView1" fitHeight="67.0" fitWidth="48.0" layoutX="144.0" layoutY="261.0" pickOnBounds="true" preserveRatio="true" />
-                        <TableView layoutX="338.0" layoutY="26.0" prefHeight="317.0" prefWidth="228.0">
+                        <TableView fx:id="TVScreening" layoutX="312.0" layoutY="26.0" onMouseClicked="#showScreening" onSort="#showScreening" prefHeight="318.0" prefWidth="266.0">
                           <columns>
-                            <TableColumn prefWidth="75.0" text="Film" />
-                            <TableColumn prefWidth="75.0" text="Salong" />
-                              <TableColumn prefWidth="75.0" text="Tid" />
+                            <TableColumn fx:id="cFilm" prefWidth="93.60003662109375" text="Film" />
+                            <TableColumn fx:id="cSalong" prefWidth="93.5999755859375" text="Salong" />
+                              <TableColumn fx:id="cTid" prefWidth="79.20001220703125" text="Tid" />
                           </columns>
                         </TableView>
-                        <ChoiceBox layoutX="157.0" layoutY="50.0" prefWidth="150.0" />
-                        <ChoiceBox layoutX="157.0" layoutY="110.0" prefWidth="150.0" />
-                        <ChoiceBox layoutX="157.0" layoutY="170.0" prefWidth="150.0" />
-                        <Label layoutX="31.0" layoutY="55.0" prefHeight="18.0" prefWidth="122.0" text="Välj film">
+                        <ChoiceBox layoutX="136.0" layoutY="50.0" prefWidth="150.0" />
+                        <ChoiceBox layoutX="136.0" layoutY="97.0" prefWidth="150.0" />
+                        <ChoiceBox layoutX="136.0" layoutY="146.0" prefWidth="150.0" />
+                        <Label layoutX="15.0" layoutY="53.0" prefHeight="18.0" prefWidth="122.0" text="Välj film">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label layoutX="31.0" layoutY="113.0" prefHeight="18.0" prefWidth="125.0" text="Välj salong">
+                        <Label layoutX="13.0" layoutY="100.0" prefHeight="18.0" prefWidth="125.0" text="Välj salong">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label layoutX="33.0" layoutY="176.0" prefHeight="18.0" prefWidth="122.0" text="Välj tid">
+                        <Label layoutX="15.0" layoutY="149.0" prefHeight="18.0" prefWidth="122.0" text="Välj tid">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Button layoutX="28.0" layoutY="222.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="278.0" text="Lägg till filmvisning" />
-                        <Button layoutX="266.0" layoutY="282.0" mnemonicParsing="false" text="Redigera " />
-                        <Button layoutX="266.0" layoutY="315.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="68.0" text="Radera" />
+                        <Button layoutX="32.0" layoutY="227.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="223.0" text="Lägg till filmvisning" />
+                        <Button layoutX="219.0" layoutY="282.0" mnemonicParsing="false" text="Redigera " />
+                        <Button layoutX="218.0" layoutY="315.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="68.0" text="Radera" />
                      </children>
                   </AnchorPane>
                </content>
