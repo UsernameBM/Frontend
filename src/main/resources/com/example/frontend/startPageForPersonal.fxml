@@ -235,6 +235,35 @@
                   </AnchorPane>
                </content>
             </Tab>
+            <Tab text="Schema">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView layoutX="207.0" layoutY="14.0" prefHeight="335.0" prefWidth="376.0">
+                          <columns>
+                            <TableColumn editable="false" prefWidth="75.0" sortable="false" text="Tid" />
+                            <TableColumn editable="false" prefWidth="75.0" sortable="false" text="ID" />
+                              <TableColumn editable="false" prefWidth="75.0" sortable="false" text="Sal" />
+                              <TableColumn editable="false" prefWidth="75.0" sortable="false" text="Kök" />
+                              <TableColumn editable="false" prefWidth="75.0" sortable="false" text="Kassa" />
+                          </columns>
+                        </TableView>
+                        <ChoiceBox fx:id="tid" layoutX="37.0" layoutY="56.0" prefWidth="150.0" />
+                        <ChoiceBox fx:id="id" layoutX="37.0" layoutY="115.0" prefWidth="150.0" />
+                        <ChoiceBox fx:id="salon" layoutX="37.0" layoutY="169.0" prefWidth="150.0" />
+                        <ChoiceBox fx:id="kitchen" layoutX="37.0" layoutY="228.0" prefWidth="150.0" />
+                        <ChoiceBox fx:id="counter" layoutX="37.0" layoutY="279.0" prefWidth="150.0" />
+                        <Label layoutX="35.0" layoutY="39.0" text="Tid" />
+                        <Label layoutX="38.0" layoutY="98.0" text="ID" />
+                        <Label layoutX="37.0" layoutY="154.0" text="Sal" />
+                        <Label layoutX="40.0" layoutY="211.0" text="Kök" />
+                        <Label layoutX="37.0" layoutY="262.0" text="Kassa" />
+                        <Button fx:id="AddChoises" layoutX="83.0" layoutY="324.0" mnemonicParsing="false" onAction="#cSendToSchedualButton" text="Lägg till" />
+                        <Label fx:id="fillInAllLabel" layoutX="47.0" layoutY="14.0" prefHeight="17.0" prefWidth="134.0" textFill="#f00505d4" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
         </tabs>
       </TabPane>
    </children>
