@@ -4,19 +4,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -109,9 +105,9 @@ public class StartPageForPersonal implements Initializable {
         @FXML
         private TableView<String> TVScreening;
         @FXML
-        private TableColumn <String, String> cFilm;
+        private TableColumn<String, String> cFilm;
         @FXML
-        private TableColumn <String, Integer> cSalong;
+        private TableColumn<String, Integer> cSalong;
         @FXML
         private TableColumn <String, Integer> cTid;
 
@@ -246,9 +242,8 @@ public class StartPageForPersonal implements Initializable {
         //  }
 
     }
-
     public ObservableList<String> getScreeningList(){
-        ObservableList<String> screeningList = FXCollections.observableArrayList(connectionManager.sendRequst("/getAllScreening"));
+        ObservableList<String> screeningList = FXCollections.observableArrayList();
         System.out.println("Screeninglist=" + screeningList);
         return screeningList;
     }
