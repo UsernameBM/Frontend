@@ -80,6 +80,7 @@ public class StartPageForPersonal implements Initializable {
 
         @FXML
         private ChoiceBox <String> CBBiograf;
+        private String[] names = {"Kista"};
         @FXML
         private TextField TFFirstName;
         @FXML
@@ -110,6 +111,10 @@ public class StartPageForPersonal implements Initializable {
         private TableColumn<String, Integer> cSalong;
         @FXML
         private TableColumn <String, Integer> cTid;
+        @FXML
+        private Label PConfirmPasswordLabel;
+        @FXML
+        private Label PConfirmRegistrationLabel;
 
 
 
@@ -166,7 +171,7 @@ public class StartPageForPersonal implements Initializable {
         if (TFPassword.getText().equals(TFRePassword.getText()  )){
             registerPersonal();
         } else {
-            //cConfirmPasswordLabel.setText("Lösenorden stämmer inte överens!");
+            PConfirmPasswordLabel.setText("Lösenorden stämmer inte överens!");
         }
     }
 
@@ -179,12 +184,13 @@ public class StartPageForPersonal implements Initializable {
         String banknumber = TFBanknumber.getText();
         String userName = TFUsername.getText();
         String password = TFPassword.getText();
+        String cinema = CBBiograf.getValue();
 
         if (connectionManager.sendRequst("/verifyPersonalUsername?username=" + userName).equals("Personal exist")){
-            //cConfirmRegistrationLabel.setText("Användarnamn upptagen, välj ett annat!");
+            PConfirmRegistrationLabel.setText("Användarnamn upptagen, välj ett annat!");
         } else {
-            connectionManager.sendRequst("/insertPersonal?firstname=" + firstName + "&lastname=" + lastName + "&tel_number=" + telephone_number + "&email=" + email + "&bank=" + bank + "&banknumber=" + banknumber + "&user_name=" + userName + "&password=" + password);
-           //cConfirmRegistrationLabel.setText("Användare har registrerats. Gå tillbaka för att logga in!");
+            connectionManager.sendRequst("/insertPersonal?firstname=" + firstName + "&lastname=" + lastName + "&tel_number=" + telephone_number + "&email=" + email + "&bank=" + bank + "&banknumber=" + banknumber + "&user_name=" + userName + "&password=" + password + "&Cinema_name=" + cinema);
+           PConfirmRegistrationLabel.setText("Personal har registrerats!");
         }
     }
 
@@ -202,6 +208,7 @@ public class StartPageForPersonal implements Initializable {
         salon.getItems().addAll(1,2,3,4,5);
         kitchen.getItems().addAll(yesKitchen);
         counter.getItems().addAll(yesCounter);
+        CBBiograf.getItems().addAll(names);
 
     }
 
