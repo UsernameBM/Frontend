@@ -4,21 +4,54 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * VAD VI BEHÖVER GÖRA
  */
 
 
-public class StartPageForPersonal {
+public class StartPageForPersonal implements Initializable {
         ConnectionManager connectionManager = new ConnectionManager();
+
+
+
+
+    @FXML
+    private ChoiceBox<String> tid;
+    private String[] tider = {"2020-04-08,09:00-15:00","2020-04-08,15:00-23:00","2020-04-09,09:00-15:00","2020-04-09,15:00-23:00"};
+    @FXML
+    private ChoiceBox<Integer> id;
+    private int[] personal = {1, 2, 3, 4, 5};
+    @FXML
+    private ChoiceBox<Integer> salon;
+    private int[] auditorium = {1,2,3,4,5};
+    @FXML
+    private ChoiceBox<String> kitchen;
+    private String[] yesKitchen = {"Ja", "Nej"};
+    @FXML
+    private ChoiceBox<String> counter;
+    private String[] yesCounter = {"Ja", "Nej"};
+    @FXML
+    private Label fillInAllLabel;
+    @FXML
+    private Button AddChoises;
+
+
 
         @FXML
         private Button addMovieButton;
@@ -72,6 +105,7 @@ public class StartPageForPersonal {
 
         final FileChooser fileChooser = new FileChooser();
 
+
         @FXML
         private TableView<String> TVScreening;
         @FXML
@@ -80,6 +114,8 @@ public class StartPageForPersonal {
         private TableColumn <String, Integer> cSalong;
         @FXML
         private TableColumn <String, Integer> cTid;
+
+
 
 
 
@@ -163,9 +199,55 @@ public class StartPageForPersonal {
 
         connectionManager.sendRequst("/insertMovie?name=" + title + "&description=" + description + "&length=" + length);
     }
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        tid.getItems().addAll(tider);
+        id.getItems().addAll(1,2,3,4,5);
+        salon.getItems().addAll(1,2,3,4,5);
+        kitchen.getItems().addAll(yesKitchen);
+        counter.getItems().addAll(yesCounter);
+
+    }
+
+    public void cSendToSchedualButton(ActionEvent event) {
+        try{
+            if (!tid.getValue().isBlank() && !kitchen.getValue().isBlank() && !counter.getValue().isBlank() && !id.getValue().toString().isBlank() && !salon.getValue().toString().isBlank() ) {
+                fillInAllLabel.setTextFill(Color.GREEN);
+                fillInAllLabel.setText("Du har bokat pass!");
+                sendToSchedual();
+            }
+        } catch (Exception e){
+            fillInAllLabel.setTextFill(Color.RED);
+            fillInAllLabel.setText("du måste fylla i");
+            e.printStackTrace();
+
+        }
+
+    }
+
+    private void sendToSchedual() {
+
+        String hej = tid.getValue();
+        System.out.println(hej);
+        String time = tid.getValue();
+        int idd = id.getValue();
+        int salond = salon.getValue();
+        String kit = kitchen.getValue();
+        //String[] kitchend = kitchen.;
+        String kassa = counter.getValue();
+        // if (connectionManager.sendRequst("/verifyCustomerUsername?username=" + time + idd).equals("Customer exist")){
+        // fillInAllLabel.setText("Användarnamn upptagen, välj ett annat!");
+        //  fillInAllLabel.setTextFill(Color.RED);
+
+        //  } else {
+        System.out.println(("/insertPersonalSchedule?idSalon=" + salond + "&idUser="+ idd +"&Counter="+ kassa +"&Kitchen=" + kit + "&date=" + time));
+        connectionManager.sendRequst("/insertPersonalSchedule?idSalon=" + salond + "&idUser="+ idd +"&Counter="+ kassa +"&Kitchen=" + kit + "&date=" + time);
+        fillInAllLabel.setText("finns i systemet!");
+        //  }
+
+    }
 
     public ObservableList<String> getScreeningList(){
-        connectionManager.sendRequst("/getAllScreening");
         ObservableList<String> screeningList = FXCollections.observableArrayList(connectionManager.sendRequst("/getAllScreening"));
         System.out.println("Screeninglist=" + screeningList);
         return screeningList;
@@ -179,4 +261,5 @@ public class StartPageForPersonal {
 
         TVScreening.setItems(list);
     }
+
 }
