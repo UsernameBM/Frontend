@@ -165,6 +165,7 @@ public class StartPageForPersonal {
     }
 
     public ObservableList<String> getScreeningList(){
+        connectionManager.sendRequst("/getAllScreening");
         ObservableList<String> screeningList = FXCollections.observableArrayList(connectionManager.sendRequst("/getAllScreening"));
         System.out.println("Screeninglist=" + screeningList);
         return screeningList;
