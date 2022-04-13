@@ -23,11 +23,11 @@
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <ImageView fx:id="movieImageView1" fitHeight="67.0" fitWidth="48.0" layoutX="144.0" layoutY="261.0" pickOnBounds="true" preserveRatio="true" />
-                        <TableView layoutX="338.0" layoutY="26.0" prefHeight="317.0" prefWidth="228.0">
+                        <TableView fx:id="TVScreening" layoutX="338.0" layoutY="26.0" onMouseClicked="#showScreening" onSort="#showScreening" prefHeight="317.0" prefWidth="228.0">
                           <columns>
-                            <TableColumn prefWidth="75.0" text="Film" />
-                            <TableColumn prefWidth="75.0" text="Salong" />
-                              <TableColumn prefWidth="75.0" text="Tid" />
+                            <TableColumn fx:id="cFilm" prefWidth="75.0" text="Film" />
+                            <TableColumn fx:id="cSalong" prefWidth="75.0" text="Salong" />
+                              <TableColumn fx:id="cTid" prefWidth="75.0" text="Tid" />
                           </columns>
                         </TableView>
                         <ChoiceBox layoutX="157.0" layoutY="50.0" prefWidth="150.0" />

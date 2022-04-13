@@ -106,6 +106,18 @@ public class StartPageForPersonal implements Initializable {
         final FileChooser fileChooser = new FileChooser();
 
 
+        @FXML
+        private TableView<String> TVScreening;
+        @FXML
+        private TableColumn <String, String> cFilm;
+        @FXML
+        private TableColumn <String, Integer> cSalong;
+        @FXML
+        private TableColumn <String, Integer> cTid;
+
+
+
+
 
     @FXML
     private void openImageFileOnAction(ActionEvent event) {
@@ -234,9 +246,8 @@ public class StartPageForPersonal implements Initializable {
         //  }
 
     }
-/*
+
     public ObservableList<String> getScreeningList(){
-        connectionManager.sendRequst("/getAllScreening");
         ObservableList<String> screeningList = FXCollections.observableArrayList(connectionManager.sendRequst("/getAllScreening"));
         System.out.println("Screeninglist=" + screeningList);
         return screeningList;
@@ -251,5 +262,4 @@ public class StartPageForPersonal implements Initializable {
         TVScreening.setItems(list);
     }
 
- */
 }
