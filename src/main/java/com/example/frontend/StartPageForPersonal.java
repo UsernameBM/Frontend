@@ -1,11 +1,14 @@
 package com.example.frontend;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
@@ -231,4 +234,22 @@ public class StartPageForPersonal implements Initializable {
         //  }
 
     }
+/*
+    public ObservableList<String> getScreeningList(){
+        connectionManager.sendRequst("/getAllScreening");
+        ObservableList<String> screeningList = FXCollections.observableArrayList(connectionManager.sendRequst("/getAllScreening"));
+        System.out.println("Screeninglist=" + screeningList);
+        return screeningList;
+    }
+
+    public void showScreening(){
+        ObservableList<String> list = getScreeningList();
+        cFilm.setCellValueFactory(new PropertyValueFactory<String, String>("time"));
+        cSalong.setCellValueFactory(new PropertyValueFactory<String, Integer>("movie_id"));
+        cTid.setCellValueFactory(new PropertyValueFactory<String, Integer>("length"));
+
+        TVScreening.setItems(list);
+    }
+
+ */
 }
